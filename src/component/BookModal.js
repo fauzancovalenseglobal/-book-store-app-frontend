@@ -38,8 +38,8 @@ export default class AddBook extends Component {
 
 
   render() {
-    const { toggle, onSave } = this.props;
-    const { options, value } = this.state;
+    const { toggle, onSave, handleToggleModel } = this.props;
+    const { options } = this.state;
     console.log(options);
 
     return (
@@ -91,7 +91,7 @@ export default class AddBook extends Component {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button className="btn btn-primary-outline btn-cancel min-width-110 mr-10">
+          <Button onClick={() => handleToggleModel(this.props.isOpen)} className="btn btn-primary-outline btn-cancel min-width-110 mr-10">
             Cancel
           </Button>
           <Button

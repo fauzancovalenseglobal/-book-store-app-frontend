@@ -7,16 +7,20 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { useState } from 'react';
+
 
 function App() {
+
+
   return (
 
     <Router>
     <Navbar/>
 
     <Routes>
-    <Route exact path="/" element={<Book  />    } />
-    <Route path="/author"  element={<Author />}  />
+    <Route exact path="/" element={<Book  isActive={true} />    } />
+    <Route path="/author"  element={<Author isActive={true}  />}  />
     </Routes>
     </Router>
   );

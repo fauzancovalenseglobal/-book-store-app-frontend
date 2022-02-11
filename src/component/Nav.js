@@ -1,8 +1,14 @@
 
 
 import React, { Component } from 'react'
+import {
+  Link
+} from "react-router-dom";
 
 export class Navbar extends Component {
+
+
+
 
     render() {
         return (
@@ -24,10 +30,12 @@ export class Navbar extends Component {
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
     
                   <li className="nav-item">
-                    <a className="nav-link active" href="/">Book</a>
+                    <Link className={`nav-link ${this.props.isActive?"":"active"}`} to="/">Book</Link>
+
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/author">Author</a>
+                  <Link className={`nav-link  ${this.props.isActive?"":"active"}`} to="/author">Author</Link>
+
                   </li>
                   
                 </ul>

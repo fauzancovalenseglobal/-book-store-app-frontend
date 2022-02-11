@@ -12,6 +12,7 @@ export class Book extends Component {
       loading: false,
       page: 1,
       author_list: [],
+      isOpen:true
     };
   }
 
@@ -38,6 +39,11 @@ export class Book extends Component {
   toggle = () => {
     this.setState({ modal: !this.state.modal });
   };
+
+  toggleModel = (status) => {
+    window.location.reload();
+  };
+
 
   handleSubmit = (item) => {
     this.toggle();
@@ -125,6 +131,8 @@ export class Book extends Component {
             authorList={this.state.author_list}
             activeItem={this.state.activeItem}
             onSave={this.handleSubmit}
+            isOpen = {this.state.isOpen}
+            handleToggleModel = {this.toggleModel}
           />
         ) : null}
       </div>

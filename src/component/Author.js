@@ -11,6 +11,8 @@ export class Author extends Component {
       author: [],
       loading: false,
       page: 1,
+      isOpen:true
+      
     };
   }
 
@@ -23,7 +25,7 @@ export class Author extends Component {
 
   createItem = () => {
     const item = { first_name: "", last_name: "", email: "" };
-    this.setState({ activeItem: item, modal: AddAuthor });
+    this.setState({ activeItem: item, modal: AddAuthor, isOpen:true });
   };
 
   toggle = () => {
@@ -50,7 +52,14 @@ export class Author extends Component {
   };
 
   editItem = item => {
-    this.setState({ activeItem: item, modal: !this.state.modal });
+    this.setState({ activeItem: item, modal: !this.state.modal  });
+    this.componentDidMount();
+    console.log(this.state.isOpen)
+
+  };
+
+  toggleModel = (status) => {
+    window.location.reload();
   };
 
   render() {
@@ -92,6 +101,7 @@ export class Author extends Component {
                     <span>{" "}
                       <button type="button" className="btn btn-info"
                       onClick={() => this.editItem(author)}
+                      
                       >
                         Edit
                       </button>{" "}
@@ -115,6 +125,8 @@ export class Author extends Component {
           <AddAuthor
             activeItem={this.state.activeItem}
             onSave={this.handleSubmit}
+            isOpen = {this.state.isOpen}
+            handleToggleModel = {this.toggleModel}
           />
         ) : null}
       </div>

@@ -16,20 +16,11 @@ export default class AddAuthor extends Component {
     super(props);
     this.state = {
       activeItem: this.props.activeItem,
-      isOpen: true,
     };
   }
 
-  toggleModel = (status) => {
-    if (status) {
-      this.setState({ isOpen: false });
-    } else {
-      this.setState({ isOpen: true });
-    }
-  };
   handleChange = (event) => {
     let { name, value } = event.target;
-
     this.setState({ value: event.target.value });
     const activeItem = { ...this.state.activeItem, [name]: value };
     this.setState({ activeItem });
@@ -37,10 +28,9 @@ export default class AddAuthor extends Component {
 
 
   render() {
-    const { toggle, onSave } = this.props;
-
+    const { toggle, onSave, handleToggleModel } = this.props;
     return (
-      <Modal isOpen={true} toggle={toggle}>
+      <Modal isOpen={this.props.isOpen} toggle={toggle}>
         <ModalHeader toggle={toggle}> Add New Author
         </ModalHeader>
         <ModalBody>
@@ -84,7 +74,7 @@ export default class AddAuthor extends Component {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button className="btn btn-primary-outline btn-cancel min-width-110 mr-10">
+          <Button onClick={() => handleToggleModel(this.props.isOpen)} className="btn btn-primary-outline btn-cancel min-width-110 mr-10">
             Cancel
           </Button>
           <Button
