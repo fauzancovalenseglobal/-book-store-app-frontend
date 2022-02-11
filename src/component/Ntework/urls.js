@@ -1,1 +1,1 @@
-export const getBaseUrl  = "http://book-store-app-demo.herokuapp.com/"
+export const getBaseUrl  = "http://book-store-app-demo.herokuapp.com"
