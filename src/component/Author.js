@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddAuthor from "./AutohorModal";
 import axios from "axios";
+import { getBaseUrl } from "./Ntework/urls";
 
 export class Author extends Component {
   constructor() {
@@ -14,7 +15,7 @@ export class Author extends Component {
   }
 
   async componentDidMount() {
-    let url = `http://127.0.0.1:8000/api/v1/author-list`;
+    let url = `${getBaseUrl}/api/v1/author-list`;
     let data = await fetch(url);
     let parseData = await data.json();
     this.setState({ author: parseData.data });
@@ -33,18 +34,18 @@ export class Author extends Component {
     this.toggle();
     if (item.id) {
       axios
-        .put(`http://127.0.0.1:8000/api/v1/author-update/${item.id}`, item)
+        .put(`${getBaseUrl}/api/v1/author-update/${item.id}`, item)
         .then((res) => this.componentDidMount());
         return;
     }
     axios
-      .post("http://127.0.0.1:8000/api/v1/author-add", item)
+      .post(`${getBaseUrl}/api/v1/author-add`, item)
       .then((res) => this.componentDidMount());
   };
 
   handleDelete = (id) => {
     axios
-      .delete(`http://127.0.0.1:8000/api/v1/author-delete/${id}`)
+      .delete(`${getBaseUrl}/api/v1/author-delete/${id}`)
       .then((res) => this.componentDidMount());
   };
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AddBook from "./BookModal";
 import axios from "axios";
+import { getBaseUrl } from "./Ntework/urls";
 
 export class Book extends Component {
   constructor() {
@@ -15,7 +16,7 @@ export class Book extends Component {
   }
 
   async componentDidMount() {
-    let url = `http://127.0.0.1:8000/api/v1/book-list`;
+    let url = `${getBaseUrl}/api/v1/book-list`;
     let data = await fetch(url);
     let parseData = await data.json();
     this.setState({ book: parseData.data });
@@ -24,7 +25,7 @@ export class Book extends Component {
 
   refreshList = () => {
     axios
-      .get("http://127.0.0.1:8000/api/v1/author-list")
+      .get(`${getBaseUrl}/api/v1/author-list`)
       .then((res) => this.setState({ author_list: res.data }))
       .catch((err) => console.log(err));
   };
@@ -42,19 +43,19 @@ export class Book extends Component {
     this.toggle();
     if (item.id) {
       axios
-        .put(`http://127.0.0.1:8000/api/v1/book-update/${item.id}`, item)
+        .put(`${getBaseUrl}/api/v1/book-update/${item.id}`, item)
         .then((res) => this.componentDidMount());
         return;
     }
 
     axios
-      .post("http://127.0.0.1:8000/api/v1/book-add", item)
+      .post(`${getBaseUrl}/api/v1/book-add`, item)
       .then((res) => this.componentDidMount());
   };
 
   handleDelete = (id) => {
     axios
-      .delete(`http://127.0.0.1:8000/api/v1/book-delete/${id}`)
+      .delete(`${getBaseUrl}/api/v1/book-delete/${id}`)
       .then((res) => this.componentDidMount());
   };
 
